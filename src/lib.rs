@@ -5,9 +5,10 @@
 #![test_runner(crate::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
+pub mod gdt;
+pub mod interrupts;
 pub mod serial;
 pub mod vga_buffer;
-pub mod interrupts;
 
 use core::panic::PanicInfo;
 
@@ -28,6 +29,7 @@ pub fn exit_qemu(exit_code: QemuExitCode) {
 }
 
 pub fn init() {
+    gdt::init();
     interrupts::init_idt();
 }
 
@@ -39,9 +41,6 @@ pub extern "C" fn _start() -> ! {
     test_main();
     loop {}
 }
-
-
-
 
 pub trait Testable {
     fn run(&self) -> ();
