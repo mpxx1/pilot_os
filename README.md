@@ -1,5 +1,5 @@
 # Pilot OS
 
-simple os kernel in Rust
+Simple OS kernel in Rust
 
-for educational purposes
+For educational purposes only
